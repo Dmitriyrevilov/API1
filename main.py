@@ -1,19 +1,17 @@
 import requests
-import urllib.parse
 from urllib.parse import urljoin
 
 
 def get_weather_of_places(place):
     base_url = "http://wttr.in/"
-    params = {
-        "M": "",
+    payload = {
         "n": "",
-        "Tqu": "",
+        "Tqm": "",
         "lang": "ru",
     }
 
-    url = urljoin(base_url, place) + "?" + urllib.parse.urlencode(params)
-    response = requests.get(url)
+    url = urljoin(base_url, place)
+    response = requests.get(url, params=payload)
     response.raise_for_status()
     return response.text
 
